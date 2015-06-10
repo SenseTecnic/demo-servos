@@ -100,7 +100,7 @@ def main():
         headers = {'Authorization': authheader}
         
         #subscribe first and get the subscribe ID
-        conn.request("POST", "/wotkit/api/control/sub/" + SENSOR_NAME, headers=headers)
+        conn.request("POST", "/api/control/sub/" + SENSOR_NAME, headers=headers)
         data = conn.getresponse().read()
         json_object = json.loads(data)
         subId = json_object['subscription']
@@ -112,7 +112,7 @@ def main():
         print "Getting Control data..."
         while 1:
 	    #print "request started for subId: " + str(subId)
-            conn.request("GET", "/wotkit/api/control/sub/" + str(subId) + "?wait=10",headers=headers)
+            conn.request("GET", "/api/control/sub/" + str(subId) + "?wait=10",headers=headers)
             response = conn.getresponse()
             data = response.read()
             json_object = json.loads(data)
